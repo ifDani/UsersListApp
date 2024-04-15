@@ -22,6 +22,8 @@ struct UsersView: View {
                     NavigationLink(value: user) {
                         UserCardComponent(user)
                     }
+                    // Comment: aquí implementaría paginación utilizando el index, y el onAppear gracias al LazyVstack
+                    // omitido por falta de tiempo, ya que en ese caso tendría que gestionar también, el push de usuarios a la persistencia y no la sobreescritura
                 }
             }
             .padding(.horizontal)
