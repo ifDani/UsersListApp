@@ -9,12 +9,13 @@ import SwiftUI
 
 struct UsersView: View {
     @StateObject var viewModel = UsersViewModel()
+    
     var body: some View {
         VStack {
             //Barra de busqueda
 
             ScrollView(.vertical, showsIndicators: false) {
-                TabUnderlineView(tabBarOptions:  [.all, .male, .female, .strong ]) { option in
+                TabUnderlineView(currentTab: $viewModel.tabSelected, tabBarOptions:  [.all, .male, .female, .strong ]) { option in
                     viewModel.tabAction(option)
                 }
 
@@ -24,6 +25,9 @@ struct UsersView: View {
                     }
                 }
                 .padding(.horizontal)
+            }
+            .refreshable {
+                viewModel.removeCaches()
             }
         }
         .searchable(text: $viewModel.searchText)

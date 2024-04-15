@@ -10,7 +10,7 @@ import NetworkSpm
 import Combine
 
 protocol UsersRepositoryProtocol {
-    func fetchUsers() async throws -> UsersResponse
+    func fetchUsers(gender: Gender?, isSecurePassword: Bool) async throws -> UsersResponse
 }
 
 final class UsersRepository {
@@ -28,9 +28,9 @@ final class UsersRepository {
 }
 
 extension UsersRepository: UsersRepositoryProtocol {
-    func fetchUsers() async throws -> UsersResponse {
+    func fetchUsers(gender: Gender? = nil, isSecurePassword: Bool = false) async throws -> UsersResponse {
         do {
-            let users =  try await server.fetchUsers()
+            let users =  try await server.fetchUsers(gender: gender, isSecurePassword: isSecurePassword)
 
             // 
             local.saveUsers(data: users)

@@ -10,18 +10,25 @@ import Combine
 import NetworkSpm
 
 protocol UsersServerProtocol {
-    func fetchUsers() async throws -> UsersResponse
+    func fetchUsers(gender: Gender?, isSecurePassword: Bool) async throws -> UsersResponse
 }
 
 
 final class UsersServer: UsersServerProtocol {
 
 
-    func fetchUsers() async throws -> UsersResponse {
+    func fetchUsers(gender: Gender? = nil, isSecurePassword: Bool = false) async throws -> UsersResponse {
 
-        let params: [String: Any] = [
+        var params: [String: Any] = [
             "results" : 20
         ]
+        if let gender = gender {
+            params["gender"] = gender.rawValue
+        }
+
+        if isSecurePassword {
+            params["password"] = "special,upper,lower,number"
+        }
 
         return try await NetworkController
             ._printChanges()

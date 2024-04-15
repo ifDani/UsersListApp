@@ -8,33 +8,36 @@
 import SwiftUI
 
 struct TabUnderlineView: View {
-    @State var currentTab: Int = 0
+    @Binding var currentTab: Int 
     @Namespace var namespace
 
     @State var tabBarOptions: [TabOptions] = [.all, .male, .female, .strong ]
     var click: (TabOptions) -> Void
 
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            ScrollViewReader { value in
-                HStack(spacing: 20) {
-                    ForEach(Array(zip(self.tabBarOptions.indices,
-                                      self.tabBarOptions)),
-                            id: \.0,
-                            content: {
-                        index, option in
-                        TabBarItem(currentTab: self.$currentTab,
-                                   namespace: namespace.self,
-                                   tabBarItemName: option.rawValue,
-                                   tab: index) {
-                            withAnimation {
-                                value.scrollTo(index)
-                                click(option)
+        ZStack(alignment: .bottom) {
+            Color.gray.frame(height: 1)
+            ScrollView(.horizontal, showsIndicators: false) {
+                ScrollViewReader { value in
+                    HStack(spacing: 20) {
+                        ForEach(Array(zip(self.tabBarOptions.indices,
+                                          self.tabBarOptions)),
+                                id: \.0,
+                                content: {
+                            index, option in
+                            TabBarItem(currentTab: self.$currentTab,
+                                       namespace: namespace.self,
+                                       tabBarItemName: option.rawValue,
+                                       tab: index) {
+                                withAnimation {
+                                    value.scrollTo(index)
+                                    click(option)
+                                }
                             }
-                        }
-                        .id(index)
-                    })
-                }.padding(.horizontal)
+                                       .id(index)
+                        })
+                    }.padding(.horizontal)
+                }
             }
         }
         .frame(height: 40)
@@ -53,7 +56,6 @@ enum TabOptions: String {
 struct TabBarItem: View {
     @Binding var currentTab: Int
     let namespace: Namespace.ID
-
     var tabBarItemName: String
     var tab: Int
     var click: () -> Void = {}
@@ -71,7 +73,7 @@ struct TabBarItem: View {
 
                 if currentTab == tab {
                     Color.black
-                        .frame(width: 50, height: 2)
+                        .frame(height: 2)
                         .matchedGeometryEffect(id: "underline",
                                                in: namespace,
                                                properties: .frame).padding(.trailing)
