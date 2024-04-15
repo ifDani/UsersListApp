@@ -9,16 +9,19 @@ import Foundation
 import Combine
 
 final class UsersViewModel: ObservableObject {
+    //  MARK: - Repository
     private let repository: UsersRepository
+    //  MARK: - Published
     @Published var users: [UserModel] = []
     @Published var usersFromApi: [UserModel] = []
-
     @Published var searchText = ""
     @Published var tabSelected = 0
     @Published var viewState: ViewState = .idle
 
+    //  MARK: - Cancellables
     var searchSubscriber: Set<AnyCancellable> = []
 
+    //  MARK: - LifeCycle
     init(repository: UsersRepository = UsersRepository()) {
         self.repository = repository
         suscribeToSearch()
@@ -82,7 +85,7 @@ extension UsersViewModel {
                     self.users = self.usersFromApi
                     return nil
                 }
-                
+
                 return value
             })
             .compactMap { $0 }
