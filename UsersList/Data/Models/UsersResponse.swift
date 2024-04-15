@@ -7,6 +7,8 @@
 
 import Foundation
 
+// Comment: Habitualmente creo 2 modelos, uno para la response en la que vienen datos opcionales, y otro modelo, en el que todos los objetos dependientes deben no ser opcionales
+// En este caso solo he agregado algunos no nullables para trabajar mejor, pero quedan otros opcionales para ahorrar tiempo
 // MARK: - UsersResponse
 struct UsersResponse: Codable {
     let results: [User]?

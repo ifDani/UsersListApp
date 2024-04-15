@@ -28,7 +28,7 @@ struct UserDetailView: View {
     }
 }
 
-
+// MARK: - Local Components
 extension UserDetailView {
     private var ProfileDataComponent: some View {
         Group {
