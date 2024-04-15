@@ -17,6 +17,11 @@
 		65AA68C22BCA628200C4A219 /* UsersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA68C12BCA628200C4A219 /* UsersResponse.swift */; };
 		65AA68C42BCA62F700C4A219 /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA68C32BCA62F700C4A219 /* Endpoints.swift */; };
 		65AA68C62BCA63BD00C4A219 /* Constant+GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA68C52BCA63BD00C4A219 /* Constant+GlobalFunctions.swift */; };
+		65AA68C92BCD0EE200C4A219 /* NetworkSpm in Frameworks */ = {isa = PBXBuildFile; productRef = 65AA68C82BCD0EE200C4A219 /* NetworkSpm */; };
+		65AA68CB2BCD0FBB00C4A219 /* UsersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA68CA2BCD0FBB00C4A219 /* UsersRepository.swift */; };
+		65AA68CF2BCD11F000C4A219 /* UsersServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA68CE2BCD11F000C4A219 /* UsersServer.swift */; };
+		65AA68D12BCD11F800C4A219 /* UsersLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA68D02BCD11F800C4A219 /* UsersLocal.swift */; };
+		65AA68D32BCD2C9500C4A219 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA68D22BCD2C9500C4A219 /* UserDefaultManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +55,10 @@
 		65AA68C12BCA628200C4A219 /* UsersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersResponse.swift; sourceTree = "<group>"; };
 		65AA68C32BCA62F700C4A219 /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		65AA68C52BCA63BD00C4A219 /* Constant+GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constant+GlobalFunctions.swift"; sourceTree = "<group>"; };
+		65AA68CA2BCD0FBB00C4A219 /* UsersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersRepository.swift; sourceTree = "<group>"; };
+		65AA68CE2BCD11F000C4A219 /* UsersServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersServer.swift; sourceTree = "<group>"; };
+		65AA68D02BCD11F800C4A219 /* UsersLocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersLocal.swift; sourceTree = "<group>"; };
+		65AA68D22BCD2C9500C4A219 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65AA68C92BCD0EE200C4A219 /* NetworkSpm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,7 +113,6 @@
 				65AA68BB2BCA5FC000C4A219 /* Data */,
 				65AA68BE2BCA60CD00C4A219 /* Views */,
 				65AA68BC2BCA60AE00C4A219 /* Shared */,
-				65AA68BD2BCA60BA00C4A219 /* Utils */,
 				65AA68912BCA5FAC00C4A219 /* UsersListApp.swift */,
 				65AA68932BCA5FAC00C4A219 /* ContentView.swift */,
 				65AA68952BCA5FAE00C4A219 /* Assets.xcassets */,
@@ -140,7 +149,7 @@
 		65AA68BB2BCA5FC000C4A219 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				65AA68C02BCA613000C4A219 /* Api */,
+				65AA68C02BCA613000C4A219 /* Repository */,
 				65AA68BF2BCA612400C4A219 /* Models */,
 			);
 			path = Data;
@@ -149,6 +158,9 @@
 		65AA68BC2BCA60AE00C4A219 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				65AA68BD2BCA60BA00C4A219 /* Utils */,
+				65AA68C32BCA62F700C4A219 /* Endpoints.swift */,
+				65AA68D22BCD2C9500C4A219 /* UserDefaultManager.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -176,12 +188,30 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		65AA68C02BCA613000C4A219 /* Api */ = {
+		65AA68C02BCA613000C4A219 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				65AA68C32BCA62F700C4A219 /* Endpoints.swift */,
+				65AA68CD2BCD11D800C4A219 /* Local */,
+				65AA68CC2BCD11D300C4A219 /* Server */,
+				65AA68CA2BCD0FBB00C4A219 /* UsersRepository.swift */,
 			);
-			path = Api;
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		65AA68CC2BCD11D300C4A219 /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				65AA68CE2BCD11F000C4A219 /* UsersServer.swift */,
+			);
+			path = Server;
+			sourceTree = "<group>";
+		};
+		65AA68CD2BCD11D800C4A219 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				65AA68D02BCD11F800C4A219 /* UsersLocal.swift */,
+			);
+			path = Local;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +230,9 @@
 			dependencies = (
 			);
 			name = UsersList;
+			packageProductDependencies = (
+				65AA68C82BCD0EE200C4A219 /* NetworkSpm */,
+			);
 			productName = UsersList;
 			productReference = 65AA688E2BCA5FAC00C4A219 /* UsersList.app */;
 			productType = "com.apple.product-type.application";
@@ -272,6 +305,9 @@
 				Base,
 			);
 			mainGroup = 65AA68852BCA5FAC00C4A219;
+			packageReferences = (
+				65AA68C72BCD0EE200C4A219 /* XCRemoteSwiftPackageReference "NetworkSpm" */,
+			);
 			productRefGroup = 65AA688F2BCA5FAC00C4A219 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -314,11 +350,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65AA68D12BCD11F800C4A219 /* UsersLocal.swift in Sources */,
 				65AA68942BCA5FAC00C4A219 /* ContentView.swift in Sources */,
+				65AA68CF2BCD11F000C4A219 /* UsersServer.swift in Sources */,
 				65AA68922BCA5FAC00C4A219 /* UsersListApp.swift in Sources */,
 				65AA68C42BCA62F700C4A219 /* Endpoints.swift in Sources */,
 				65AA68C22BCA628200C4A219 /* UsersResponse.swift in Sources */,
+				65AA68D32BCD2C9500C4A219 /* UserDefaultManager.swift in Sources */,
 				65AA68C62BCA63BD00C4A219 /* Constant+GlobalFunctions.swift in Sources */,
+				65AA68CB2BCD0FBB00C4A219 /* UsersRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,6 +682,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		65AA68C72BCD0EE200C4A219 /* XCRemoteSwiftPackageReference "NetworkSpm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ifDani/NetworkSpm.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		65AA68C82BCD0EE200C4A219 /* NetworkSpm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 65AA68C72BCD0EE200C4A219 /* XCRemoteSwiftPackageReference "NetworkSpm" */;
+			productName = NetworkSpm;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 65AA68862BCA5FAC00C4A219 /* Project object */;
 }

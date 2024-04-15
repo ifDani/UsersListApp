@@ -1,0 +1,15 @@
+{
+  "originHash" : "188c5f2a4acc7279f071b323aab04efd071bbeecf76078e2eeffa4dd066b7ba4",
+  "pins" : [
+    {
+      "identity" : "networkspm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ifDani/NetworkSpm.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "6e187b0e5fe47e7685de9c0ebbcec45cb334e826"
+      }
+    }
+  ],
+  "version" : 3
+}
