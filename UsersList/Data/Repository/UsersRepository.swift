@@ -14,17 +14,31 @@ protocol UsersRepositoryProtocol {
 }
 
 final class UsersRepository {
-    private let server: UsersServer
+    private let server: UsersServerProtocol
+    private let local: UsersLocalProtocol
 
-    init (server: UsersServer = UsersServer()) {
+    init (
+        server: UsersServerProtocol = UsersServer(),
+        local: UsersLocalProtocol = UsersLocal()
+    ) {
         self.server = server
+        self.local = local
     }
 
 }
 
 extension UsersRepository: UsersRepositoryProtocol {
     func fetchUsers() async throws -> UsersResponse {
-        try await server.fetchUsers()
+        do {
+            let users =  try await server.fetchUsers()
+
+            // 
+            local.saveUsers(data: users)
+
+            return users
+        } catch {
+            throw error
+        }
     }
 
     

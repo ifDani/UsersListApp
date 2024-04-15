@@ -15,10 +15,16 @@ protocol UsersServerProtocol {
 
 
 final class UsersServer: UsersServerProtocol {
-    private var network = Network().manager
 
 
     func fetchUsers() async throws -> UsersResponse {
-        return try await network.request(.get, url: Endpoint.empty.url)
+
+        let params: [String: Any] = [
+            "results" : 20
+        ]
+
+        return try await NetworkController
+            ._printChanges()
+            .request(.get, url: Endpoint.empty.url, params: params, bodyType: .inQuery)
     }
 }

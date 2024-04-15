@@ -22,6 +22,10 @@
 		65AA68CF2BCD11F000C4A219 /* UsersServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA68CE2BCD11F000C4A219 /* UsersServer.swift */; };
 		65AA68D12BCD11F800C4A219 /* UsersLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA68D02BCD11F800C4A219 /* UsersLocal.swift */; };
 		65AA68D32BCD2C9500C4A219 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA68D22BCD2C9500C4A219 /* UserDefaultManager.swift */; };
+		65AA68D62BCD2DC400C4A219 /* UsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA68D52BCD2DC400C4A219 /* UsersViewModel.swift */; };
+		65AA68D82BCD323500C4A219 /* UsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA68D72BCD323400C4A219 /* UsersView.swift */; };
+		65AA68DA2BCD3F4400C4A219 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA68D92BCD3F4400C4A219 /* Text.swift */; };
+		65AA68DD2BCD47A400C4A219 /* TabUnderlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA68DC2BCD47A400C4A219 /* TabUnderlineView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +63,10 @@
 		65AA68CE2BCD11F000C4A219 /* UsersServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersServer.swift; sourceTree = "<group>"; };
 		65AA68D02BCD11F800C4A219 /* UsersLocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersLocal.swift; sourceTree = "<group>"; };
 		65AA68D22BCD2C9500C4A219 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
+		65AA68D52BCD2DC400C4A219 /* UsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewModel.swift; sourceTree = "<group>"; };
+		65AA68D72BCD323400C4A219 /* UsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersView.swift; sourceTree = "<group>"; };
+		65AA68D92BCD3F4400C4A219 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
+		65AA68DC2BCD47A400C4A219 /* TabUnderlineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabUnderlineView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				65AA68C52BCA63BD00C4A219 /* Constant+GlobalFunctions.swift */,
+				65AA68D92BCD3F4400C4A219 /* Text.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -176,6 +185,8 @@
 		65AA68BE2BCA60CD00C4A219 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				65AA68DB2BCD479100C4A219 /* Components */,
+				65AA68D42BCD2DAF00C4A219 /* UsersList */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -212,6 +223,23 @@
 				65AA68D02BCD11F800C4A219 /* UsersLocal.swift */,
 			);
 			path = Local;
+			sourceTree = "<group>";
+		};
+		65AA68D42BCD2DAF00C4A219 /* UsersList */ = {
+			isa = PBXGroup;
+			children = (
+				65AA68D52BCD2DC400C4A219 /* UsersViewModel.swift */,
+				65AA68D72BCD323400C4A219 /* UsersView.swift */,
+			);
+			path = UsersList;
+			sourceTree = "<group>";
+		};
+		65AA68DB2BCD479100C4A219 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				65AA68DC2BCD47A400C4A219 /* TabUnderlineView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,11 +381,15 @@
 				65AA68D12BCD11F800C4A219 /* UsersLocal.swift in Sources */,
 				65AA68942BCA5FAC00C4A219 /* ContentView.swift in Sources */,
 				65AA68CF2BCD11F000C4A219 /* UsersServer.swift in Sources */,
+				65AA68D62BCD2DC400C4A219 /* UsersViewModel.swift in Sources */,
 				65AA68922BCA5FAC00C4A219 /* UsersListApp.swift in Sources */,
 				65AA68C42BCA62F700C4A219 /* Endpoints.swift in Sources */,
 				65AA68C22BCA628200C4A219 /* UsersResponse.swift in Sources */,
 				65AA68D32BCD2C9500C4A219 /* UserDefaultManager.swift in Sources */,
 				65AA68C62BCA63BD00C4A219 /* Constant+GlobalFunctions.swift in Sources */,
+				65AA68D82BCD323500C4A219 /* UsersView.swift in Sources */,
+				65AA68DA2BCD3F4400C4A219 /* Text.swift in Sources */,
+				65AA68DD2BCD47A400C4A219 /* TabUnderlineView.swift in Sources */,
 				65AA68CB2BCD0FBB00C4A219 /* UsersRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
