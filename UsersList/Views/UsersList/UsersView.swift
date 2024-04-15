@@ -24,6 +24,7 @@ struct UsersView: View {
                     }
                     // Comment: aquí implementaría paginación utilizando el index, y el onAppear gracias al LazyVstack
                     // omitido por falta de tiempo, ya que en ese caso tendría que gestionar también, el push de usuarios a la persistencia y no la sobreescritura
+                    // omitido también el muestreo de errores si la api fallara pero controlado para que no haga crash para optimizar tiempo
                 }
             }
             .padding(.horizontal)

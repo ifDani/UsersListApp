@@ -23,6 +23,4 @@ final class UsersLocal: UsersLocalProtocol {
     func getUsers() -> UserResponseModel? {
         manager.load(UserResponseModel.self, forKey: .users)
     }
-
-
 }
