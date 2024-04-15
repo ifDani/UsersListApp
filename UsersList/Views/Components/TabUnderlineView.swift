@@ -11,7 +11,7 @@ struct TabUnderlineView: View {
     @Binding var currentTab: Int
     @Namespace var namespace
 
-    @State var tabBarOptions: [TabOptions] = [.all, .male, .female, .strong ]
+    @State var tabBarOptions: [TabOptions] = [.all, .male, .female, .strong]
     var click: (TabOptions) -> Void
 
     var body: some View {

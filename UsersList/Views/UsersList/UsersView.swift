@@ -69,7 +69,6 @@ extension UsersView {
                     .setStyle(size: 12, color: .black.opacity(0.7), weight: .regular)
             }
         }
-
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding([.horizontal, .vertical])
         .background(Color.gray.opacity(0.1))

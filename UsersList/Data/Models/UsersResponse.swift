@@ -133,4 +133,15 @@ struct UserModel: Codable, Hashable {
         self.name = user.name ?? Name(title: "", first: "", last: "")
         self.fullName = user.fullName ?? ""
     }
+
+    init(id: ID, phone: String, login: Login, picture: Picture, email: String, gender: Gender, name: Name, fullName: String) {
+           self.id = id
+           self.phone = phone
+           self.login = login
+           self.picture = picture
+           self.email = email
+           self.gender = gender
+           self.name = name
+           self.fullName = fullName
+       }
 }

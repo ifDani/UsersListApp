@@ -29,6 +29,7 @@
 		65AA68E02BCD756200C4A219 /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA68DF2BCD756200C4A219 /* UserDetailView.swift */; };
 		65AA68E22BCD7A3800C4A219 /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA68E12BCD7A3800C4A219 /* ViewState.swift */; };
 		65AA68E52BCD9E6300C4A219 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA68E42BCD9E6300C4A219 /* View.swift */; };
+		65AA68E92BCDBA9C00C4A219 /* MockUsersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA68E82BCDBA9C00C4A219 /* MockUsersRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		65AA68DF2BCD756200C4A219 /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
 		65AA68E12BCD7A3800C4A219 /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
 		65AA68E42BCD9E6300C4A219 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		65AA68E82BCDBA9C00C4A219 /* MockUsersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUsersRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 		65AA68A12BCA5FAE00C4A219 /* UsersListTests */ = {
 			isa = PBXGroup;
 			children = (
+				65AA68E72BCDBA8100C4A219 /* MockRepository */,
 				65AA68A22BCA5FAE00C4A219 /* UsersListTests.swift */,
 			);
 			path = UsersListTests;
@@ -265,6 +268,14 @@
 				65AA68E12BCD7A3800C4A219 /* ViewState.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		65AA68E72BCDBA8100C4A219 /* MockRepository */ = {
+			isa = PBXGroup;
+			children = (
+				65AA68E82BCDBA9C00C4A219 /* MockUsersRepository.swift */,
+			);
+			path = MockRepository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -426,6 +437,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65AA68E92BCDBA9C00C4A219 /* MockUsersRepository.swift in Sources */,
 				65AA68A32BCA5FAE00C4A219 /* UsersListTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

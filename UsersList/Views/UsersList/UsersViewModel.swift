@@ -8,9 +8,10 @@
 import Foundation
 import Combine
 
+@MainActor
 final class UsersViewModel: ObservableObject {
     //  MARK: - Repository
-    private let repository: UsersRepository
+    private let repository: UsersRepositoryProtocol
     //  MARK: - Published
     @Published var users: [UserModel] = []
     @Published var usersFromApi: [UserModel] = []
@@ -22,7 +23,7 @@ final class UsersViewModel: ObservableObject {
     var searchSubscriber: Set<AnyCancellable> = []
 
     //  MARK: - LifeCycle
-    init(repository: UsersRepository = UsersRepository()) {
+    init(repository: UsersRepositoryProtocol = UsersRepository()) {
         self.repository = repository
         suscribeToSearch()
     }
@@ -34,7 +35,8 @@ extension UsersViewModel {
         Task {
             // Comment: Aunque no lo pide en la práctica, por coherencia con el funcionamiento, en este caso eliminaremos persistencia
             // Esta logica de hecho emite un pequeño parpadeo, ya que en un momento dado no hay usuarios ( Aunque no se aprecia debido al showloading )
-            removeCaches()
+            UserDefaultsManager.clearAll()
+
             switch option {
             case .all:
                 await getUsers()
@@ -75,22 +77,22 @@ extension UsersViewModel {
     }
 
     func suscribeToSearch() {
-        // Comment: Aunque podriamos hacer la busqueda mápida debido a que es un filtrado local, he optado por esta solucion utilizando combin
+        // Comment: Aunque podriamos hacer la busqueda mápida debido a que es un filtrado local, he optado por esta solucion utilizando combine
         $searchText
             .debounce(for: .milliseconds(800), scheduler: RunLoop.main)
             .removeDuplicates()
-            .map({ value -> String? in
+            .map({ [weak self] value -> String? in
                 if value.count <= 2 {
                     //Remove filter
-                    self.users = self.usersFromApi
+                    self?.users = self?.usersFromApi ?? []
                     return nil
                 }
 
                 return value
             })
             .compactMap { $0 }
-            .sink { _ in } receiveValue: { _ in
-                self.queryFilter()
+            .sink { _ in } receiveValue: { [weak self] _ in
+                self?.queryFilter()
             }
             .store(in: &searchSubscriber)
     }
@@ -102,16 +104,15 @@ extension UsersViewModel {
         do {
             viewState = .loading
 
-            let users = try await repository.fetchUsers(gender: gender, isSecurePassword: secure).results
+            let response = try await repository.fetchUsers(gender: gender, isSecurePassword: secure).results
 
             await MainActor.run {
-                self.users = users
-                self.usersFromApi = users
+                users = response
+                usersFromApi = response
                 viewState = .success
             }
         } catch {
             viewState = .error
-            print(error)
         }
     }
 }

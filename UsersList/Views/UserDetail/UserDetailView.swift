@@ -17,7 +17,6 @@ struct UserDetailView: View {
         VStack {
             ProfileDataComponent
 
-
             TextFieldsComponent
 
             Spacer()
