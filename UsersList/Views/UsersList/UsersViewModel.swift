@@ -10,11 +10,13 @@ import Combine
 
 final class UsersViewModel: ObservableObject {
     private let repository: UsersRepository
-    @Published var users: [User] = []
-    @Published var usersFromApi: [User] = []
+    @Published var users: [UserModel] = []
+    @Published var usersFromApi: [UserModel] = []
 
     @Published var searchText = ""
     @Published var tabSelected = 0
+    @Published var viewState: ViewState = .idle
+
     var searchSubscriber: Set<AnyCancellable> = []
 
     init(repository: UsersRepository = UsersRepository()) {
@@ -24,19 +26,26 @@ final class UsersViewModel: ObservableObject {
 
     func getUsers(gender: Gender? = nil, secure: Bool = false) async {
         do {
-            let users = try await repository.fetchUsers(gender: gender, isSecurePassword: secure).results
+            viewState = .loading
 
+            let users = try await repository.fetchUsers(gender: gender, isSecurePassword: secure).results
+            
             await MainActor.run {
-                self.users = users ?? []
-                self.usersFromApi = users ?? []
+                self.users = users
+                self.usersFromApi = users
+                viewState = .success
             }
         } catch {
+            viewState = .error
             print(error)
         }
     }
 
     func tabAction(_ option: TabOptions) {
         Task {
+            // Aunque no lo pide en la práctica, por coherencia con el funcionamiento, en este caso eliminaremos persistencia
+            // Esta logica de hecho emite un pequeño parpadeo, ya que en un momento dado no hay usuarios ( Aunque no se aprecia debido al showloading )
+            removeCaches()
             switch option {
             case .all:
                 await getUsers()
@@ -52,6 +61,7 @@ final class UsersViewModel: ObservableObject {
     }
 
     func suscribeToSearch() {
+        // Aunque podriamos hacer la busqueda mápida debido a que es un filtrado local, he optado por esta solucion utilizando combin
         $searchText
             .debounce(for: .milliseconds(800), scheduler: RunLoop.main)
             .removeDuplicates()
@@ -72,15 +82,19 @@ final class UsersViewModel: ObservableObject {
 
     func queryFilter() {
         users = usersFromApi.filter { user in
-            if let fullName = user.fullName {
-                return fullName.localizedCaseInsensitiveContains(searchText)
-            }
-            return false
+            return user.fullName.localizedCaseInsensitiveContains(searchText)
         }
     }
 
+    func updateUserData(_ oldData: UserModel,_ newData: UserModel) {
+        guard let index = users.firstIndex(where: { $0.id == oldData.id }) else {
+            return // El usuario no se encontró en la lista
+        }
+        users[index] = newData // Actualizar el usuario en la lista
+        // Modificamos los datos persistidos
+        UserDefaultsManager.save(users, forKey: .users)
+    }
     func removeCaches() {
-        tabSelected = 0
         UserDefaultsManager.clearAll()
         Task {
             await getUsers()

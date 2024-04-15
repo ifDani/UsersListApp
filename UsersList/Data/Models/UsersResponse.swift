@@ -24,11 +24,9 @@ struct Info: Codable {
 // MARK: - Result
 struct User: Codable {
     let id: ID?
-    let nat, cell, phone: String?
-    let login: Login
-    let dob, registered: Dob?
+    let phone: String?
+    var login: Login
     let picture: Picture?
-    let location: Location?
     let email: String?
     let gender: Gender?
     let name: Name?
@@ -42,63 +40,20 @@ struct User: Codable {
 }
 
 // MARK: - Dob
-struct Dob: Codable {
+struct Dob: Codable, Hashable {
     let date: String?
     let age: Int?
 }
 
-enum Gender: String, Codable {
+enum Gender: String, Codable, Hashable {
     case female = "female"
     case male = "male"
 }
 
 // MARK: - ID
-struct ID: Codable {
+struct ID: Codable, Hashable {
     let name: String?
     let value: String?
-}
-
-// MARK: - Location
-struct Location: Codable {
-    let street: Street?
-    let city, country: String?
-    let postcode: Postcode?
-    let timezone: Timezone?
-    let coordinates: Coordinates?
-    let state: String?
-}
-
-// MARK: - Coordinates
-struct Coordinates: Codable {
-    let longitude, latitude: String?
-}
-
-enum Postcode: Codable {
-    case integer(Int)
-    case string(String)
-
-    init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        if let x = try? container.decode(Int.self) {
-            self = .integer(x)
-            return
-        }
-        if let x = try? container.decode(String.self) {
-            self = .string(x)
-            return
-        }
-        throw DecodingError.typeMismatch(Postcode.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for Postcode"))
-    }
-
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        switch self {
-        case .integer(let x):
-            try container.encode(x)
-        case .string(let x):
-            try container.encode(x)
-        }
-    }
 }
 
 // MARK: - Street
@@ -113,19 +68,67 @@ struct Timezone: Codable {
 }
 
 // MARK: - Login
-struct Login: Codable {
+struct Login: Codable, Hashable {
     let sha256: String
-    let password, md5, uuid: String?
+    var password: String
+    let md5, uuid: String?
 
     let username, sha1, salt: String?
 }
 
 // MARK: - Name
-struct Name: Codable {
+struct Name: Codable, Hashable {
     let title, first, last: String?
 }
 
 // MARK: - Picture
-struct Picture: Codable {
+struct Picture: Codable, Hashable {
     let large, thumbnail, medium: String?
+}
+
+
+struct UserResponseModel: Codable {
+    let results: [UserModel]
+    let info: InfoModel
+
+    init(from response: UsersResponse) {
+        self.results = response.results?.map { UserModel(from: $0) } ?? []
+        self.info = InfoModel(from: response.info ?? Info(version: nil, results: nil, seed: nil, page: nil))
+    }
+}
+
+struct InfoModel: Codable {
+    let version: String
+    let results: Int
+    let seed: String
+    let page: Int
+
+    init(from info: Info) {
+        self.version = info.version ?? ""
+        self.results = info.results ?? 0
+        self.seed = info.seed ?? ""
+        self.page = info.page ?? 0
+    }
+}
+
+struct UserModel: Codable, Hashable {
+    let id: ID
+    let phone: String
+    var login: Login
+    let picture: Picture
+    var email: String
+    let gender: Gender
+    let name: Name
+    let fullName: String
+
+    init(from user: User) {
+        self.id = user.id ?? ID(name: "", value: "")
+        self.phone = user.phone ?? ""
+        self.login = user.login
+        self.picture = user.picture ?? Picture(large: "", thumbnail: "", medium: "")
+        self.email = user.email ?? ""
+        self.gender = user.gender ?? .female
+        self.name = user.name ?? Name(title: "", first: "", last: "")
+        self.fullName = user.fullName ?? ""
+    }
 }

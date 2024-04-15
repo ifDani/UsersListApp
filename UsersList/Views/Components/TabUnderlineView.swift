@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TabUnderlineView: View {
-    @Binding var currentTab: Int 
+    @Binding var currentTab: Int
     @Namespace var namespace
 
     @State var tabBarOptions: [TabOptions] = [.all, .male, .female, .strong ]

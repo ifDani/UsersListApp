@@ -26,6 +26,9 @@
 		65AA68D82BCD323500C4A219 /* UsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA68D72BCD323400C4A219 /* UsersView.swift */; };
 		65AA68DA2BCD3F4400C4A219 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA68D92BCD3F4400C4A219 /* Text.swift */; };
 		65AA68DD2BCD47A400C4A219 /* TabUnderlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA68DC2BCD47A400C4A219 /* TabUnderlineView.swift */; };
+		65AA68E02BCD756200C4A219 /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA68DF2BCD756200C4A219 /* UserDetailView.swift */; };
+		65AA68E22BCD7A3800C4A219 /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA68E12BCD7A3800C4A219 /* ViewState.swift */; };
+		65AA68E52BCD9E6300C4A219 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA68E42BCD9E6300C4A219 /* View.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +70,9 @@
 		65AA68D72BCD323400C4A219 /* UsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersView.swift; sourceTree = "<group>"; };
 		65AA68D92BCD3F4400C4A219 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 		65AA68DC2BCD47A400C4A219 /* TabUnderlineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabUnderlineView.swift; sourceTree = "<group>"; };
+		65AA68DF2BCD756200C4A219 /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
+		65AA68E12BCD7A3800C4A219 /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
+		65AA68E42BCD9E6300C4A219 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +172,7 @@
 		65AA68BC2BCA60AE00C4A219 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				65AA68E32BCD7E3B00C4A219 /* Models */,
 				65AA68BD2BCA60BA00C4A219 /* Utils */,
 				65AA68C32BCA62F700C4A219 /* Endpoints.swift */,
 				65AA68D22BCD2C9500C4A219 /* UserDefaultManager.swift */,
@@ -178,6 +185,7 @@
 			children = (
 				65AA68C52BCA63BD00C4A219 /* Constant+GlobalFunctions.swift */,
 				65AA68D92BCD3F4400C4A219 /* Text.swift */,
+				65AA68E42BCD9E6300C4A219 /* View.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -185,8 +193,9 @@
 		65AA68BE2BCA60CD00C4A219 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				65AA68DB2BCD479100C4A219 /* Components */,
 				65AA68D42BCD2DAF00C4A219 /* UsersList */,
+				65AA68DE2BCD754100C4A219 /* UserDetail */,
+				65AA68DB2BCD479100C4A219 /* Components */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -240,6 +249,22 @@
 				65AA68DC2BCD47A400C4A219 /* TabUnderlineView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		65AA68DE2BCD754100C4A219 /* UserDetail */ = {
+			isa = PBXGroup;
+			children = (
+				65AA68DF2BCD756200C4A219 /* UserDetailView.swift */,
+			);
+			path = UserDetail;
+			sourceTree = "<group>";
+		};
+		65AA68E32BCD7E3B00C4A219 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				65AA68E12BCD7A3800C4A219 /* ViewState.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -378,10 +403,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65AA68E52BCD9E6300C4A219 /* View.swift in Sources */,
 				65AA68D12BCD11F800C4A219 /* UsersLocal.swift in Sources */,
 				65AA68942BCA5FAC00C4A219 /* ContentView.swift in Sources */,
+				65AA68E22BCD7A3800C4A219 /* ViewState.swift in Sources */,
 				65AA68CF2BCD11F000C4A219 /* UsersServer.swift in Sources */,
 				65AA68D62BCD2DC400C4A219 /* UsersViewModel.swift in Sources */,
+				65AA68E02BCD756200C4A219 /* UserDetailView.swift in Sources */,
 				65AA68922BCA5FAC00C4A219 /* UsersListApp.swift in Sources */,
 				65AA68C42BCA62F700C4A219 /* Endpoints.swift in Sources */,
 				65AA68C22BCA628200C4A219 /* UsersResponse.swift in Sources */,

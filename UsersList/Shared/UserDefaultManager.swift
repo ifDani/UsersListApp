@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-
+// Esta lógica para persistencia de datos tambien podría realizarse con CoreData, pero he utilizado UserDefaults para reducir el tiempo de desarrollo (creación de tablas etc)
 // Enumeración que define claves para almacenar datos en UserDefaults.
 public enum UserDefaultsConstant: String {
     case users
